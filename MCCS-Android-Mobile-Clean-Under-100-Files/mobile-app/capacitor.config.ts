@@ -1,0 +1,24 @@
+import type { CapacitorConfig } from '@capacitor/cli';
+
+const config: CapacitorConfig = {
+  appId: 'com.miranenergy.mccs',
+  appName: 'MCCS',
+  webDir: 'www',
+  server: {
+    // The native app always displays the current deployed MCCS website.
+    // This keeps data, authentication and updates identical to the web version.
+    url: 'https://miran-commercial-control-system.vercel.app',
+    cleartext: false,
+    allowNavigation: ['miran-commercial-control-system.vercel.app']
+  },
+  android: {
+    allowMixedContent: false,
+    backgroundColor: '#071B33'
+  },
+  ios: {
+    contentInset: 'always',
+    backgroundColor: '#071B33'
+  }
+};
+
+export default config;
