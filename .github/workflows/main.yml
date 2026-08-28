@@ -17,7 +17,7 @@ jobs:
 
       - name: Find Android project
         run: |
-          ANDROID_DIR="$(find "$GITHUB_WORKSPACE" -type f -path '*/android/gradlew' -print -quit | xargs -r dirname)"
+          ANDROID_DIR="$(find "$GITHUB_WORKSPACE" -type f -path '*/android/settings.gradle' -print -quit | xargs -r dirname)"
           test -n "$ANDROID_DIR"
           echo "ANDROID_DIR=$ANDROID_DIR" >> "$GITHUB_ENV"
 
