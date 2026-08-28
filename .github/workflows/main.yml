@@ -19,17 +19,26 @@ jobs:
         with:
           node-version: "22"
 
+      - name: Find MCCS mobile application
+        run: |
+          MCCS_APP_DIR="$(find "$GITHUB_WORKSPACE" -type f -path '*/mobile-app/package.json' -print -quit | xargs -r dirname)"
+          test -n "$MCCS_APP_DIR"
+          echo "MCCS_APP_DIR=$MCCS_APP_DIR" >> "$GITHUB_ENV"
+          echo "Mobile application found at: $MCCS_APP_DIR"
+
       - name: Install dependencies
-        working-directory: mobile-app
-        run: npm ci
+        run: |
+          cd "$MCCS_APP_DIR"
+          npm ci
 
       - name: Synchronize Android project
-        working-directory: mobile-app
-        run: npm run sync
+        run: |
+          cd "$MCCS_APP_DIR"
+          npm run sync
 
       - name: Build APK
-        working-directory: mobile-app/android
         run: |
+          cd "$MCCS_APP_DIR/android"
           chmod +x gradlew
           ./gradlew assembleDebug
 
@@ -37,5 +46,6 @@ jobs:
         uses: actions/upload-artifact@v4
         with:
           name: MCCS-Android-APK
-          path: mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
+          path: "**/android/app/build/outputs/apk/debug/app-debug.apk"
           if-no-files-found: error
+          retention-days: 30
