@@ -8,7 +8,7 @@ jobs:
     runs-on: ubuntu-latest
     defaults:
       run:
-        working-directory: mobile-app
+        working-directory: MCCS-Android-Mobile-Usability-Update-Under-100-Files/MCCS2151/mobile-app
 
     steps:
       - uses: actions/checkout@v4
@@ -22,13 +22,13 @@ jobs:
         with:
           node-version: "22"
           cache: npm
-          cache-dependency-path: mobile-app/package-lock.json
+          cache-dependency-path: MCCS-Android-Mobile-Usability-Update-Under-100-Files/MCCS2151/mobile-app/package-lock.json
 
       - run: npm ci
       - run: npm run sync
 
       - name: Build APK
-        working-directory: mobile-app/android
+        working-directory: MCCS-Android-Mobile-Usability-Update-Under-100-Files/MCCS2151/mobile-app/android
         run: |
           chmod +x gradlew
           ./gradlew assembleDebug
@@ -36,4 +36,4 @@ jobs:
       - uses: actions/upload-artifact@v4
         with:
           name: MCCS-Android-APK
-          path: mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
+          path: MCCS-Android-Mobile-Usability-Update-Under-100-Files/MCCS2151/mobile-app/android/app/build/outputs/apk/debug/app-debug.apk
