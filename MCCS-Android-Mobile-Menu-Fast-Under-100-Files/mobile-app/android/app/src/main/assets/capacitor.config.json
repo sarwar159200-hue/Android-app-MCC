@@ -1,0 +1,20 @@
+{
+	"appId": "com.miranenergy.mccs",
+	"appName": "MCCS",
+	"webDir": "www",
+	"server": {
+		"url": "https://miran-commercial-control-system.vercel.app",
+		"cleartext": false,
+		"allowNavigation": [
+			"miran-commercial-control-system.vercel.app"
+		]
+	},
+	"android": {
+		"allowMixedContent": false,
+		"backgroundColor": "#071B33"
+	},
+	"ios": {
+		"contentInset": "always",
+		"backgroundColor": "#071B33"
+	}
+}
