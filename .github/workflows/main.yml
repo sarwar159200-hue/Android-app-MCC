@@ -24,7 +24,6 @@ jobs:
           MCCS_APP_DIR="$(find "$GITHUB_WORKSPACE" -type f -path '*/mobile-app/package.json' -print -quit | xargs -r dirname)"
           test -n "$MCCS_APP_DIR"
           echo "MCCS_APP_DIR=$MCCS_APP_DIR" >> "$GITHUB_ENV"
-          echo "Mobile application found at: $MCCS_APP_DIR"
 
       - name: Install dependencies
         run: |
